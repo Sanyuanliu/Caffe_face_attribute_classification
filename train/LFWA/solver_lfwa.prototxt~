@@ -1,0 +1,14 @@
+net: "train/LFWA/alexnet_256_lfw.prototxt"
+test_iter: 1000
+test_interval: 1000
+base_lr: 0.001
+lr_policy: "multistep"
+gamma: 0.1
+stepvalue: 10000
+display: 100
+max_iter: 20000
+momentum: 0.9
+weight_decay: 0.005
+snapshot: 10000
+snapshot_prefix: "./models/Attribute/lfwa/lfwa"
+solver_mode: GPU
