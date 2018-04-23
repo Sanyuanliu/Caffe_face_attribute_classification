@@ -5,6 +5,7 @@ base_lr: 0.001
 lr_policy: "multistep"
 gamma: 0.1
 stepvalue: 10000
+#for celeba the stepvalue:30000, the max_iter:40000 
 display: 100
 max_iter: 20000
 momentum: 0.9
