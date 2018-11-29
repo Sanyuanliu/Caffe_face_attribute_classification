@@ -39,11 +39,16 @@ cv::Mat findSimilarityTransform(std::vector<cv::Point2d> source_points, std::vec
 	for (auto sp : source_points) {
 		source_point_reflect.push_back(Point2d(-sp.x, sp.y));
 	}
+	swap(source_point_reflect[0], source_point_reflect[1]);
+   	swap(source_point_reflect[3], source_point_reflect[4]);
 	Mat trans2 = findNonReflectiveTransform(source_point_reflect, target_points, Tinv2);
 	trans2.colRange(0, 1) *= -1;
+	Tinv2.rowRange(0, 1) *= -1;
 	std::vector<Point2d> trans_points1, trans_points2;
 	transform(source_points, trans_points1, trans1);
 	transform(source_points, trans_points2, trans2);
+	swap(trans_points2[0], trans_points2[1]);
+    	swap(trans_points2[3], trans_points2[4]);
 	double norm1 = norm(Mat(trans_points1), Mat(target_points), NORM_L2);
 	double norm2 = norm(Mat(trans_points2), Mat(target_points), NORM_L2);
 	Tinv = norm1 < norm2 ? Tinv1 : Tinv2;
